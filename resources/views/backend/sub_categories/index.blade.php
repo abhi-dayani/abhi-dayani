@@ -50,9 +50,8 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Category_Type</th>
-                                            <th>Name</th>
                                             <th>Image</th>
+                                            <th>Name</th>
                                             <th>Slug</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -64,10 +63,8 @@
                                                 <td>{{ $Sub_Category->id }}</td>
                                                 <td><img src="{{ asset('images/' . $Sub_Category->image) }}"
                                                         alt="Italian Trulli" width="50px" height="50px"></td>
-                                                <td>{{ $Sub_Category->category_type }}</td>
-                                                <td>{{ $Sub_Category->slug }}</td>
-                                                <td>{{$Sub_Category->name}}</td>
-                                                {{-- <td>{{ $Sub_Category->category_id }}</td> --}}
+                                                <td>{{ $Sub_Category->name }}</td>
+                                                <td>{{$Sub_Category->slug}}</td>
                                                 <td>{{ $Sub_Category->status }}</td>
                                                 <td>
                                                     <a href="{{ route('sub_categories.edit', ['scid' => $Sub_Category->id]) }}"

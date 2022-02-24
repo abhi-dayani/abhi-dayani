@@ -39,15 +39,17 @@
                             <form id="quickForm" action="{{ route('sub_categories.update') }}" method="POST">
                                 @csrf
                                 <div class="card-body">
-                                <div class="form-group">
-                                    <label>Category Type</label>
-                                    <select class="form-control select" style="width:100%;">
-                                        <option selected="selected"> category type</option>
-                                        <option>Men</option>
-                                        <option>Women</option>
-                                        {{-- <option disabled="disabled">California </option> --}}
-                                    </select>
-                                </div>
+                                    <div class="form-group">
+                                        <label>Category Type</label>
+                                        <select class="form-control select" name="category_type" id="category_type"
+                                            style="width:100%;">
+                                            @foreach ($categories as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $sub_categories->category_type == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label for="name">Name</label>
                                         <input type="text" name="name" class="form-control" id="name"
@@ -68,7 +70,7 @@
                                         @error('name')
                                             <div class="text text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>  --}}
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
                                         <input type="text" name="slug" class="form-control" id="slug"
@@ -105,4 +107,22 @@
 @endsection
 
 @section('page_script')
+    <script>
+        $('#name').on('input', function() {
+            var slug = slugify($('#name').val());
+            $('#slug').val(slug);
+        });
+
+        function slugify(string) {
+            return string
+                .toString()
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/[^\w\-]+/g, "")
+                .replace(/\-\-+/g, "-")
+                .replace(/^-+/, "")
+                .replace(/-+$/, "");
+        }
+    </script>
 @endsection

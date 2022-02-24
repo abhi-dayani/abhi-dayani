@@ -56,6 +56,7 @@ class SubCategoryController extends Controller
     }
     public function editSub_Category($scid)
     {
+        $categories = Category::get();
         $sub_categories = Sub_categories::find($scid);
 
         if (!$sub_categories && empty($sub_categories)) 
@@ -63,7 +64,7 @@ class SubCategoryController extends Controller
             return redirect()->route('sub_categories');
         }
 
-        return view('backend.sub_categories.edit')->with(['sub_categories' => $sub_categories]);
+        return view('backend.sub_categories.edit')->with(['sub_categories' => $sub_categories, 'categories' => $categories]);
     }
     public function updateSub_Category(Request $request)
     {
@@ -72,9 +73,8 @@ class SubCategoryController extends Controller
             'category_type' => 'required',
             'name' => 'required',
             'slug' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $sub_categories = Sub_categories::find($request->type);
+        $sub_categories = Sub_categories::find($request->id);
     
         $sub_categories->category_type = $request->category_type;
         $sub_categories->name = $request->name;
