@@ -41,15 +41,24 @@
                         </p>
                     </a>
                 </li>
-                 <li class="nav-item"> 
+                <li class="nav-item">
                     <a href="{{ route('sub_categories') }}"
                         class="nav-link {{ Request::segment(2) == 'sub_categories' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Sub_Categories
+                            Sub Categories
                         </p>
                     </a>
-                </li> 
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('brands') }}"
+                        class="nav-link {{ Request::segment(2) == 'brands' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Brands
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}"
                         class="nav-link {{ Request::segment(2) == 'dashboard' ? '' : '' }}"

@@ -16,12 +16,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Sub Categories</h1>
+                        <h1 class="m-0">Brands</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Sub Category</li>
+                            <li class="breadcrumb-item active">Brands</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -39,40 +39,35 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <h3 class="card-title">Sub Category</h3>
+                                    <h3 class="card-title">All Brands</h3>
                                 </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <a href="{{ route('sub_categories.create') }}" class="btn btn-success pull">Create
-                                    Sub categories</a>
+                                <a href="{{ route('brands.create') }}" class="btn btn-success pull">Create Brand</a>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Category_Type</th>
-                                            <th>Name</th>
                                             <th>Image</th>
+                                            <th>Name</th>
                                             <th>Slug</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sub_categories as $Sub_Category)
+                                        @foreach ($brands as $brand)
                                             <tr>
-                                                <td>{{ $Sub_Category->id }}</td>
-                                                <td><img src="{{ asset('images/' . $Sub_Category->image) }}"
-                                                        alt="Italian Trulli" width="50px" height="50px"></td>
-                                                <td>{{ $Sub_Category->category_type }}</td>
-                                                <td>{{ $Sub_Category->slug }}</td>
-                                                <td>{{$Sub_Category->name}}</td>
-                                                {{-- <td>{{ $Sub_Category->category_id }}</td> --}}
-                                                <td>{{ $Sub_Category->status }}</td>
+                                                <td>{{ $brand->id }}</td>
+                                                <td><img src="{{ asset('images/'.$brand->image) }}" alt="Italian Trulli" width="50px" height="50px"></td>
+                                                <td>{{ $brand->name }}</td>
+                                                <td>{{ $brand->slug }}</td>
+                                                <td>{{ $brand->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('sub_categories.edit', ['scid' => $Sub_Category->id]) }}"
+                                                    <a href="{{ route('brands.edit', ['bid' => $brand->id]) }}"
                                                         class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="{{ route('sub_categories.delete', ['scid' => $Sub_Category->id]) }}"
+                                                    <a href="{{ route('brands.delete', ['bid' => $brand->id]) }}"
                                                         class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>

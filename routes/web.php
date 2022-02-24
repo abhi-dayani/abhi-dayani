@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
-use App\Models\Sub_categories; 
+use App\Models\Sub_categories;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,13 +43,20 @@ Route::post('/admin/categories/update',[CategoryController::class,'updateCategor
 Route::get('/admin/categories/delete/{cid}',[CategoryController::class,'deletecategory'])->middleware(['auth'])->name('categories.delete');
 
 //Sub_categories
-
 Route::get('/admin/sub_categories',[SubCategoryController::class,'listSub_Category'])->middleware(['auth'])->name('sub_categories');
 Route::get('/admin/sub_categories/create',[SubCategoryController::class,'createSub_Category'])->middleware((['auth']))->name('sub_categories.create');
 Route::post('/admin/sub_categories/store',[SubCategoryController::class,'storeSub_Category'])->middleware((['auth']))->name('sub_categories.store');
 Route::get('/admin/sub_categories/edit/{scid}',[SubCategoryController::class,'editSub_Category'])->middleware((['auth']))->name('sub_categories.edit');
 Route::post('/admin/sub_categories/update',[SubCategoryController::class,'updateSub_Category'])->middleware((['auth']))->name('sub_categories.update');
 Route::get('/admin/sub_categories/delete/{scid}',[SubCategoryController::class,'deleteSub_Category'])->middleware((['auth']))->name('sub_categories.delete');
+
+// Brands Routes
+Route::get('/admin/brands',[BrandController::class,'index'])->middleware(['auth'])->name('brands');
+Route::get('/admin/brands/create',[BrandController::class,'create'])->middleware((['auth']))->name('brands.create');
+Route::post('/admin/brands/store',[BrandController::class,'store'])->middleware((['auth']))->name('brands.store');
+Route::get('/admin/brands/edit/{bid}',[BrandController::class,'edit'])->middleware((['auth']))->name('brands.edit');
+Route::post('/admin/brands/update',[BrandController::class,'update'])->middleware((['auth']))->name('brands.update');
+Route::get('/admin/brands/delete/{bid}',[BrandController::class,'delete'])->middleware((['auth']))->name('brands.delete');
 
 
 require __DIR__.'/auth.php';
